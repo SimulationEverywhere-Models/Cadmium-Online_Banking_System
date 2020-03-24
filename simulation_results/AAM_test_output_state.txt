@@ -1,0 +1,27 @@
+00:00:00:000
+State for model input_reader_login is next time: 00:00:00:000
+State for model AAM1 is login_status: 0 & ian_status 0 Account number: 0
+00:00:00:000
+State for model input_reader_login is next time: 00:00:40:000
+State for model AAM1 is login_status: 0 & ian_status 0 Account number: 0
+00:00:40:000
+State for model input_reader_login is next time: 00:01:10:000
+State for model AAM1 is login_status: 1 & ian_status 0 Account number: 840188
+00:00:50:000
+State for model input_reader_login is next time: 00:01:10:000
+State for model AAM1 is login_status: 1 & ian_status 0 Account number: 840188
+00:01:50:000
+State for model input_reader_login is next time: 00:00:50:000
+State for model AAM1 is login_status: 1 & ian_status 1 Account number: 394383
+00:02:00:000
+State for model input_reader_login is next time: 00:00:50:000
+State for model AAM1 is login_status: 1 & ian_status 1 Account number: 394383
+00:02:40:000
+State for model input_reader_login is next time: 00:01:10:000
+State for model AAM1 is login_status: 1 & ian_status 1 Account number: 394383
+00:03:50:000
+State for model input_reader_login is next time: inf
+State for model AAM1 is login_status: 1 & ian_status 0 Account number: 783099
+00:04:00:000
+State for model input_reader_login is next time: inf
+State for model AAM1 is login_status: 1 & ian_status 0 Account number: 783099

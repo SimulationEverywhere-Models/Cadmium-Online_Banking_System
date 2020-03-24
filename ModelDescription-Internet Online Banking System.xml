@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Models>
+	<Model name="Internet Online Banking System" type="coupled" description="A coupled system for internet online banking system">
+		<Inputs>
+			<Port name="inp_topmodel" type="Message_t" description="this input will be in the form of (login,ian)"/>
+		</Inputs>
+		<Outputs>
+			<Port name="outp_topmodel" type="Message_t" description="This output will output (accountbalance, logoutstatus)"/>
+		</Outputs>
+		<Files>
+			<File name="main.cpp" type="CPP" location="/top_model"/>
+		</Files>
+	</Model>
+    <Model name="Authentication Engine" type="coupled" description="A coupled system for ANV, PV and BPM">
+        <Inputs>
+            <Port name="inp_accountnumber" type="int" description="this will be a account number input to the model"/>
+        </Inputs>
+        <Outputs>
+            <Port name="outp_VBA" type="Message_t" description="This will output Valid bill amount in the output"/>
+        </Outputs>
+        <Files>
+            <File name="main_AE_test.cpp" type="CPP" location="/test"/>
+        </Files>
+    </Model>
+    <Model name="Account Access Manager" type="atomic" description="This atomic model checks the account number and login status and gives the output">
+        <Inputs>
+            <Port name="input" type="Message_t" description="this input will be in the form of (login,ian)"/>
+        </Inputs>
+        <Outputs>
+            <Port name="van" type="int" description="This output will output 1 if the account number is valid"/>
+            <Port name="logout" type="int" description="This output will output 1 if the account number is invalid"/>
+        </Outputs>
+        <Files>
+            <File name="AccountAccessManager.hpp" type="HPP" location="/atomics"/>
+            <File name="main_AAM_test.cpp" type="CPP" location="/test"/>
+            <File name="AAM_input_test.txt" type="TXT" location="/input_data"/>
+        </Files>
+    </Model>
+    <Model name="Account Number Verifier" type="atomic" description="This atomic model will give an output 1/0 depending on the verification status">
+        <Inputs>
+            <Port name="accountnumber_IN" type="int" description="this input will be a random account number"/>
+        </Inputs>
+        <Outputs>
+            <Port name="output_OUT" type="Message_t" description="This output will be in the form of (van, logout)"/>
+        </Outputs>
+        <Files>
+            <File name="AccountNumberVerifier.hpp" type="HPP" location="/atomics"/>
+            <File name="main_ANV_test.cpp" type="CPP" location="/test"/>
+            <File name="ANV _input_test.txt" type="TXT" location="/input_data"/>
+        </Files>
+    </Model>
+    <Model name="Password Verifier" type="atomic" description="This atomic model takes valid account number and generates password number">
+        <Inputs>
+            <Port name="Input_IN" type="Message_t" description="this input will be in the form of (VAN,IVPN)"/>
+        </Inputs>
+        <Outputs>
+            <Port name="Output_OUT" type="Message_t" description="This output will output (1,1) if the password is invalid and will loop to give (1,2) when the password is valid"/>
+        </Outputs>
+        <Files>
+            <File name="PasswordVerifier.hpp" type="HPP" location="/atomics"/>
+            <File name="main_PV_test.cpp" type="CPP" location="/test"/>
+            <File name="PV_input_test.txt" type="TXT" location="/input_data"/>
+        </Files>
+    </Model>
+    <Model name="Bill Payment Manager" type="atomic" description="This atomic model checks the bill amount and gives a valid bill in the output">
+        <Inputs>
+            <Port name="Input_IN" type="Message_t" description="this input will be in the form of (VBA,IBA)"/>
+        </Inputs>
+        <Outputs>
+            <Port name="VBA_OUT" type="int" description="This output will output bill amount if the bill amount is valid"/>
+        </Outputs>
+        <Files>
+            <File name="BillPaymentManager.hpp" type="HPP" location="/atomics"/>
+            <File name="main_BPM_test.cpp" type="CPP" location="/test"/>
+            <File name="BPM_input_test.txt" type="TXT" location="/input_data"/>
+        </Files>
+    </Model>
+    <Model name="Transaction Process Manager" type="atomic" description="This atomic model processes the transaction and gives output as logout status and the account balance">
+        <Inputs>
+            <Port name="VBA_IN" type="int" description="this input will take the bill amount"/>
+        </Inputs>
+        <Outputs>
+            <Port name="Output_OUT" type="Message_t" description="This output will output remaining account balance and the logout status as (balance,logoutstatus)"/>
+        </Outputs>
+        <Files>
+            <File name="TransactionProcessManager.hpp" type="HPP" location="/atomics"/>
+            <File name="main_TPM_test.cpp" type="CPP" location="/test"/>
+            <File name="TPM_input_test.txt" type="TXT" location="/input_data"/>
+        </Files>
+    </Model>
+    
+</Models>
